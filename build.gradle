@@ -1,0 +1,36 @@
+plugins {
+    id("io.micronaut.application") version "3.7.10"
+}
+//plugins {
+//    id 'java'
+//    id 'io.micronaut.application' version '4.2.1'
+//}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    implementation("io.micronaut:micronaut-http-client")
+//    implementation("io.micronaut:micronaut-http-client-jdk")
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Velocity
+    implementation 'org.apache.velocity.tools:velocity-tools-generic:3.1'
+    implementation 'org.apache.velocity:velocity-engine-core:2.3'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass.set("org.example.HPMainGenUniq")
+}
+

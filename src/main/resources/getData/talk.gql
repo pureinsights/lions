@@ -1,0 +1,26 @@
+{
+    getTalksByIds(ids: ${ID}) {
+        access
+        captionsUrl
+        description
+        endsAt
+        host {
+            name
+        }
+        id
+        imageUrl
+        slug
+        speakers {
+            biography
+            id
+            imageUrl
+            name
+            title
+        }
+        stage
+        startsAt
+        title
+        videoUrl
+        year
+    }
+}

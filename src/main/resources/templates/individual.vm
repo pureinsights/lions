@@ -1,0 +1,57 @@
+${fullname}#if($jobtitle) - $jobtitle#end#if($role) ($role)#end
+Individual ID: ${id}
+
+#if($company)${fullname} works for ${company} in ${city}, ${country}.#end
+#if($region)${fullname} works in the ${region} region.#end
+
+#if($experience)Experience: ${experience}#end
+#if($interests)Experience: ${interests}#end
+#if($skills)Experience: ${skills}#end
+
+#if($awards.size() != 0)
+${fullname} has the following number of awards:
+#foreach($a in $awards)
+${a.levelLabel}: ${a.count}
+#end
+#end
+
+#if($campaigns.size() != 0)
+${fullname} has been involved in the following campaigns:
+
+  #foreach($c in $campaigns)
+  Campaign: $!{c.festival.name}, ${c.year} - ${c.title}
+    #if($c.tags.size() != 0)
+      Tags: ${c.tags}
+    #end
+    This campaign was run by ${c.company.name} of ${c.company.town}#if(${c.brand.name}) for ${c.brand.name}#end#if(${c.awardCount}) and won ${c.awardCount} awards#end.
+    #if($c.awards.size() != 0)
+    The campaign has the following number of awards:
+    #foreach($a in $c.awards)
+    ${a.levelLabel}: ${a.count}
+    #end
+    #end
+
+    $!_.noCRLF($!{c.caseStudy.background})
+    $!_.noCRLF($!{c.caseStudy.description})
+    $!_.noCRLF($!{c.caseStudy.execution})
+    $!_.noCRLF($!{c.caseStudy.idea})
+    $!_.noCRLF($!{c.caseStudy.outcome})
+    $!_.noCRLF($!{c.caseStudy.strategy})
+
+    #if($c.credits.companies.size() != 0)
+      The following companies are credited:
+      #foreach($co in $c.credits.companies)
+        ${co.name} - ${co.role} (${co.location})
+      #end
+
+    #end
+    #if($c.credits.people.size() != 0)
+      The following people are credited:
+      #foreach($p in $c.credits.people)
+        ${p.name}#if(${p.role}) - ${p.role}#end#if(${p.company}) (${p.company})#end
+      #end
+
+    #end
+  #end
+
+#end

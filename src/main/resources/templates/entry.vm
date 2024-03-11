@@ -1,0 +1,47 @@
+${title}
+Entry ID: ${id}
+
+${title} was an entry for the ${brand.name} brand at the ${festival.name} festival in ${year}.
+
+The entry is associated with the following campaign: $!{campaign.festival.name}, ${campaign.year} - ${campaign.title}
+#if($campaign.tags.size() != 0)
+  Tags: ${campaign.tags}
+#end
+This campaign was run for ${campaign.company.name} of ${campaign.company.town}#if(${campaign.awardCount}) and won ${campaign.awardCount} awards#end.
+#if($campaign.awards.size() != 0)
+The campaign has the following number of awards:
+#foreach($a in $campaign.awards)
+${a.levelLabel}: ${a.count}
+#end
+#end
+
+$!_.noCRLF($!{campaign.caseStudy.background})
+$!_.noCRLF($!{campaign.caseStudy.description})
+$!_.noCRLF($!{campaign.caseStudy.execution})
+$!_.noCRLF($!{campaign.caseStudy.idea})
+$!_.noCRLF($!{campaign.caseStudy.outcome})
+$!_.noCRLF($!{campaign.caseStudy.strategy})
+
+#if($campaign.credits.companies.size() != 0)
+  The following companies are credited:
+  #foreach($co in $campaign.credits.companies)
+    ${co.name} - ${co.role} (${co.location})
+  #end
+
+#end
+#if($c.credits.people.size() != 0)
+  The following people are credited:
+  #foreach($p in $campaign.credits.people)
+    ${p.name}#if(${p.role}) - ${p.role}#end#if(${p.company}) (${p.company})#end
+  #end
+
+#end
+
+#if($caseStudy.size() != 0)
+Case study:
+  #foreach($c in $caseStudy)
+  ${c.question}
+  $!_.noCRLF(${c.response})
+
+  #end
+#end

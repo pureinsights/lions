@@ -1,0 +1,777 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: RootQueryType
+    mutation: RootMutationType
+}
+
+type Agency {
+    access: String
+    awardCount: Int
+    campaignCount: Int
+    campaigns: [Campaign]
+    id: Int
+    locations: [AgencyLocation]
+    name: String
+    shortlistCount: Int
+    slug: String
+}
+
+type AgencyLocation {
+    awardCount: Int
+    country: String
+    name: String
+    region: String
+    shortlistCount: Int
+    town: String
+}
+
+type Asset {
+    access: String
+    fullUrl: String
+    id: Int
+    label: String
+    thumbnailUrl: String
+    type: String
+}
+
+type Brand {
+    access: String
+    awardCount: Int
+    campaignCount: Int
+    campaigns: [Campaign]
+    id: Int
+    name: String
+    sector: BrandSector
+    shortlistCount: Int
+    slug: String
+}
+
+type BrandFilterValues {
+    count: Int
+    key: String
+    label: String
+}
+
+type BrandFiltersOptions {
+    key: String
+    label: String
+    values: [BrandFilterValues]
+}
+
+type BrandSector {
+    id: Int
+    name: String
+    slug: String
+}
+
+type Campaign {
+    access: String
+    assets: [Asset]
+    "Total number of awards for Campaign at festival."
+    awardCount: Int
+    "Ordered list of awards and counts for Campaign."
+    awards: [CampaignAward]
+    brand: CampaignBrand
+    caseStudy: CaseStudy
+    company: CampaignCompany
+    credits: CampaignCredits
+    downloadable: Boolean
+    entryTypes: [CampaignEntryType]
+    festival: Festival
+    id: Int
+    requiredUserActions: [String]
+    saveable: Boolean
+    shortlisted: Boolean
+    slug: String
+    tags: [String]
+    title: String
+    year: Int
+}
+
+type CampaignAward {
+    count: Int
+    level: String
+    levelLabel: String
+}
+
+type CampaignBrand {
+    name: String
+    slug: String
+}
+
+type CampaignCompany {
+    name: String
+    town: String
+}
+
+type CampaignCompanyCredit {
+    location: String
+    name: String
+    role: String
+    slug: String
+}
+
+type CampaignCredits {
+    companies: [CampaignCompanyCredit]
+    people: [CampaignPersonCredit]
+}
+
+type CampaignEntry {
+    category: String
+    level: String
+    levelLabel: String
+    section: String
+    slug: String
+    title: String
+}
+
+type CampaignEntryType {
+    entries: [CampaignEntry]
+    name: String
+    slug: String
+}
+
+type CampaignFilterValues {
+    count: Int
+    key: String
+    label: String
+}
+
+type CampaignFiltersOptions {
+    key: String
+    label: String
+    values: [CampaignFilterValues]
+}
+
+type CampaignPersonCredit {
+    company: String
+    name: String
+    role: String
+    slug: String
+}
+
+type CaseStudy {
+    background: String
+    description: String
+    execution: String
+    idea: String
+    outcome: String
+    strategy: String
+}
+
+type Claim {
+    status: StatusEnum
+}
+
+type ClassicAsset {
+    agency: String
+    award: String
+    brand: String
+    country: String
+    id: Int
+    "Image used for thumbnails for this Classic Asset."
+    imageUrl: String
+    lion: String
+    production: String
+    region: String
+    sector: String
+    "URL Path for the show page to this talk."
+    slug: String
+    title: String
+    videoUrl: String
+    year: Int
+}
+
+type ClassicAssetFilterValues {
+    count: Int
+    key: String
+    label: String
+}
+
+type ClassicAssetFiltersOptions {
+    key: String
+    label: String
+    values: [ClassicAssetFilterValues]
+}
+
+type EditorialSummary {
+    description: String
+    id: String
+    imageUrl: String
+    mediaType: String
+    publishedDate: String
+    slug: String
+    theme: String
+    title: String
+}
+
+type Entry {
+    access: String
+    assets: [Asset]
+    brand: EntryBrand
+    campaign: Campaign
+    caseStudy: [EntryQuestionResponses]
+    company: EntryCompany
+    credits: EntryCredits
+    entryType: EntryType
+    festival: Festival
+    id: String
+    requiredUserActions: [String]
+    saveable: Boolean
+    slug: String
+    tags: [String]
+    title: String
+    year: Int
+}
+
+type EntryAward {
+    level: String
+    levelLabel: String
+}
+
+type EntryBrand {
+    name: String
+    slug: String
+}
+
+type EntryCategory {
+    id: Int
+    name: String
+    slug: String
+}
+
+type EntryCompany {
+    name: String
+    town: String
+}
+
+type EntryCompanyCredit {
+    location: String
+    name: String
+    role: String
+    slug: String
+}
+
+type EntryCredits {
+    companies: [EntryCompanyCredit]
+    people: [EntryPersonCredit]
+}
+
+type EntryFilterValues {
+    count: Int
+    key: String
+    label: String
+    section: String
+}
+
+type EntryFiltersOptions {
+    key: String
+    label: String
+    values: [EntryFilterValues]
+}
+
+type EntryPersonCredit {
+    company: String
+    name: String
+    role: String
+    slug: String
+}
+
+type EntryQuestionResponses {
+    question: String
+    response: String
+}
+
+type EntrySection {
+    name: String
+}
+
+type EntryType {
+    award: EntryAward
+    category: EntryCategory
+    categorySubType: String
+    id: Int
+    name: String
+    section: EntrySection
+    slug: String
+}
+
+type Festival {
+    code: String
+    name: String
+}
+
+type FestivalEntryTrack {
+    entryTypes: [FestivalEntryType]
+    trackName: String
+}
+
+type FestivalEntryType {
+    juryPresident: FestivalJuryPresident
+    name: String
+    "Slug for awards listing page of entry type."
+    slug: String
+    status: FestivalEntryTypeStatus
+}
+
+type FestivalEntryTypeStatus {
+    currentStatus: String
+    "Possible URL for Live Stream or other page.  When missing, use entry_type slug"
+    url: String
+}
+
+type FestivalJuryPresident {
+    biography: String
+    company: String
+    image: String
+    name: String
+    title: String
+}
+
+type FilteredAgencies {
+    agencies: [Agency]
+    pagination: Pagination
+}
+
+type FilteredBrands {
+    brands: [Brand]
+    pagination: Pagination
+}
+
+type FilteredCampaigns {
+    campaigns: [Campaign]
+    pagination: Pagination
+}
+
+type FilteredClassicAssets {
+    classicAssets: [ClassicAsset]
+    pagination: Pagination
+}
+
+type FilteredEditorial {
+    editorials: [EditorialSummary]
+    pagination: Pagination
+}
+
+type FilteredEntries {
+    entries: [Entry]
+    pagination: Pagination
+}
+
+type FilteredInspirations {
+    inspirations: [InspirationSummary]
+    pagination: Pagination
+}
+
+type FilteredPortfolios {
+    pagination: Pagination
+    portfolios: [Portfolio]
+}
+
+type FilteredTalks {
+    pagination: Pagination
+    talks: [Talk]
+}
+
+type Host {
+    name: String
+}
+
+type Inspiration {
+    access: String
+    guestEdit: String
+    id: String
+    imageUrl: String
+    inspirationResources: [InspirationResources]
+    introduction: String
+    liveAt: String
+    requiredUserAction: String
+    title: String
+}
+
+type InspirationResources {
+    access: String
+    asset: Asset
+    campaign: Campaign
+    classicAsset: ClassicAsset
+    id: String
+    introduction: String
+    talk: Talk
+    title: String
+}
+
+type InspirationSummary {
+    access: String
+    guestEdit: String
+    id: String
+    imageUrl: String
+    introduction: String
+    liveAt: String
+    slug: String
+    title: String
+}
+
+type PaginatedAgency {
+    agency: Agency
+    pagination: Pagination
+}
+
+type PaginatedBrand {
+    brand: Brand
+    pagination: Pagination
+}
+
+type PaginatedPortfolio {
+    pagination: Pagination
+    portfolio: Portfolio
+}
+
+type Pagination {
+    currentPage: Int
+    pageSize: Int
+    totalRecords: Int
+}
+
+type Portfolio {
+    access: String
+    awardCount: Int
+    awards: [PortfolioAward]
+    campaigns: [Campaign]
+    city: String
+    company: String
+    country: String
+    directoryListing: Boolean
+    experience: String
+    fullname: String
+    id: Int
+    imageUrl: String
+    interests: [String]
+    jobtitle: String
+    public: Boolean
+    region: String
+    role: String
+    skills: [String]
+    slug: String
+}
+
+type PortfolioAward {
+    count: Int
+    level: String
+    levelLabel: String
+    sortCode: Int @deprecated(reason: "This is not used by FE")
+}
+
+type PortfolioFilterOptions {
+    key: String
+    label: String
+    values: [PortfolioFilterValues]
+}
+
+type PortfolioFilterValues {
+    count: Int
+    key: String
+    label: String
+}
+
+type Ranking {
+    agency: String
+    city: String
+    country: String
+    name: String
+    names: String
+    position: Int
+    positionDelta: Int
+}
+
+type RankingHeaderMap {
+    field: String
+    label: String
+}
+
+type RankingsData {
+    rankings: [Ranking]
+    rankingsHeaders: [RankingHeaderMap]
+}
+
+type RankingsFilterValues {
+    key: String
+    label: String
+    section: String
+}
+
+type RankingsFiltersOptions {
+    key: String
+    label: String
+    values: [RankingsFilterValues]
+}
+
+type RootMutationType {
+    "Claim a license for a user"
+    claimLicence(claimCode: String!): Claim
+    "Upsert a video tracking"
+    createVideoTracking(percentagePlayed: Float, playerCurrentTime: Int, videoPlayerState: String, videoTitle: String, videoUrl: String): VideoTracking
+}
+
+type RootQueryType {
+    "Retrieve a filtered list of agencies"
+    filteredAgencies(filters: AgencyFilters!): FilteredAgencies
+    "Retrieve a filtered list of brands"
+    filteredBrands(filters: BrandFilters!): FilteredBrands
+    "Retrieve a filtered list of campaigns"
+    filteredCampaigns(filters: CampaignFilters!): FilteredCampaigns
+    "Retrieve a filtered list of classic assets"
+    filteredClassicAssets(filters: ClassicAssetsFilters!): FilteredClassicAssets
+    filteredEditorial(filters: EditorialFilters): FilteredEditorial
+    "Retrieve a filtered list of entries"
+    filteredEntries(filters: EntriesFilters!): FilteredEntries
+    filteredInspirations(filters: InspirationFilters): FilteredInspirations
+    "Retrieve a filtered list of portfolios"
+    filteredPortfolios(filters: PortfolioFilters): FilteredPortfolios
+    "Retrieve a filtered list of rankings"
+    filteredRankings(filters: RankingsFilters!): RankingsData
+    "Retrieve a filtered list of talks"
+    filteredTalks(filters: TalkFilters!): FilteredTalks
+    "Retrieve a filtered list of entries"
+    filteredYoungEntries(filters: YoungEntriesFilters!): [YoungEntry]
+    "Get agencies for agency ids"
+    getAgenciesByIds(ids: [Int]!): [Agency]
+    "Retrieve a list of agency filter options"
+    getAgencyFilterOptions(filters: AgencyFilters): [CampaignFiltersOptions]
+    "Get agency with filtered campaigns"
+    getAgencyWithFilteredCampaigns(campaignFilters: CampaignFilters, id: Int!): PaginatedAgency
+    "Retrieve a list of brand filter options"
+    getBrandFilterOptions(filters: BrandFilters): [BrandFiltersOptions]
+    "Get brand with filtered campaigns"
+    getBrandWithFilteredCampaigns(campaignFilters: CampaignFilters, id: Int!): PaginatedBrand
+    "Get brands for brand ids"
+    getBrandsByIds(ids: [Int]!): [Brand]
+    "Retrieve a list of campaign filter options"
+    getCampaignFilterOptions(filters: CampaignFilters): [CampaignFiltersOptions]
+    "Get campaigns for campaign ids"
+    getCampaignsByIds(ids: [Int]!): [Campaign]
+    "Retrieve a list of classic asset filter options"
+    getClassicAssetFilterOptions(filters: ClassicAssetsFilters): [ClassicAssetFiltersOptions]
+    "Get entries for entry ids"
+    getEntriesByIds(ids: [Int]!): [Entry]
+    "Retrieve a list of entry filter options"
+    getEntryFilterOptions(filters: EntriesFilters): [EntryFiltersOptions]
+    "Get Festival Tracks by year and Festival Code"
+    getFestivalTracks(festivalName: String, year: Int): [FestivalEntryTrack]
+    "Retrieve a list of portfolio filter options"
+    getPortfolioFilterOptions(filters: PortfolioFilters): [PortfolioFilterOptions]
+    "Get portfolio with filtered campaigns"
+    getPortfolioWithFilteredCampaigns(campaignFilters: CampaignFilters, id: Int!): PaginatedPortfolio
+    "Get portfolios for portfolio ids"
+    getPortfoliosByIds(ids: [Int]!): [Portfolio]
+    "Retrieve a list of rankings filter options"
+    getRankingsFilterOptions(filters: RankingsFilters): [RankingsFiltersOptions]
+    "Retrieve a list of related campaigns"
+    getRelatedCampaigns(campaignId: Int): [Campaign]
+    "Retrieve a list of talk filter options"
+    getTalkFilterOptions(filters: TalkFilters): [TalkFiltersOptions]
+    "Get talks for talk ids"
+    getTalksByIds(ids: [Int]!): [Talk]
+    "Get Young entries for ids"
+    getYoungEntriesByIds(ids: [Int]!): [YoungEntry]
+    inspirationForId(id: String): Inspiration
+}
+
+type Speaker {
+    biography: String
+    id: String
+    imageUrl: String
+    name: String
+    title: String
+}
+
+type Talk {
+    "Can be FULL or RESTRICTED.  This value is set based on a user's permissions for this talk"
+    access: String
+    captionsUrl: String
+    description: String
+    "UTC Time talk ends"
+    endsAt: NaiveDateTime
+    host: Host
+    id: String
+    "Image used for thumbnails for this talk."
+    imageUrl: String
+    "URL Path for the show page to this talk."
+    slug: String
+    speakers: [Speaker]
+    stage: String
+    "UTC Time talk starts"
+    startsAt: NaiveDateTime
+    title: String
+    videoUrl: String
+    year: Int
+}
+
+type TalkFilterValues {
+    count: Int
+    key: String
+    label: String
+}
+
+type TalkFiltersOptions {
+    key: String
+    label: String
+    values: [TalkFilterValues]
+}
+
+type VideoTracking {
+    percentagePlayed: Float
+    playerCurrentTime: Int
+    userId: String
+    videoPlayerState: String
+    videoTitle: String
+    videoUrl: String
+}
+
+type YoungEntry {
+    asset: Asset
+    assets: [Asset]
+    award: String @deprecated(reason: "use young_entry_award instead")
+    country: String
+    credits: [EntryPersonCredit]
+    entryTypeName: String
+    id: String
+    shortlisted: Boolean
+    slug: String
+    synopses: [YoungEntrySynopsis]
+    title: String
+    year: Int
+    youngEntryAward: YoungEntryAward
+}
+
+type YoungEntryAward {
+    level: String
+    levelLabel: String
+}
+
+type YoungEntrySynopsis {
+    answer: String
+    displayOrder: Int
+    question: String
+    questionId: Int
+}
+
+enum StatusEnum {
+    "The operation was successful."
+    OK
+}
+
+"""
+
+The `Naive DateTime` scalar type represents a naive date and time without
+timezone. The DateTime appears in a JSON response as an ISO8601 formatted
+string.
+"""
+scalar NaiveDateTime
+
+input AgencyFilters {
+    awards: [String]
+    ids: [Int]
+    page: Int
+    regions: [String]
+    searchText: String
+    sort: String
+}
+
+input BrandFilters {
+    countries: [String]
+    ids: [Int]
+    page: Int
+    searchText: String
+    sectors: [String]
+    sort: String
+}
+
+input CampaignFilters {
+    awards: [String]
+    countries: [String]
+    enteredLions: [String]
+    festivalName: [String]
+    ids: [Int]
+    mediaCategories: [String]
+    page: Int
+    searchText: String
+    sectors: [String]
+    sort: String
+    years: [Int]
+}
+
+input ClassicAssetsFilters {
+    agencies: [String]
+    awards: [String]
+    brands: [String]
+    countries: [String]
+    ids: [Int]
+    lions: [String]
+    page: Int
+    productions: [String]
+    searchText: String
+    sectors: [String]
+    sort: String
+    years: [Int]
+}
+
+input EditorialFilters {
+    categoryId: [String]
+    ids: [String]
+    page: Int
+    searchText: String
+}
+
+input EntriesFilters {
+    awards: [String]
+    categoryIds: [Int]
+    companyNames: [String]
+    entryTypeId: [Int]
+    festivalName: [String]
+    ids: [Int]
+    page: Int
+    sort: String
+    years: [Int]
+}
+
+input InspirationFilters {
+    ids: [String]
+    page: Int
+    searchText: String
+    sort: String
+}
+
+input PortfolioFilters {
+    awards: [String]
+    countries: [String]
+    interests: [String]
+    page: Int
+    roles: [String]
+    searchText: String
+    skills: [String]
+    sort: String
+}
+
+input RankingsFilters {
+    category: Int
+    festivalCode: String
+    type: String
+    year: Int
+}
+
+input TalkFilters {
+    festivalName: [String]
+    ids: [Int]
+    page: Int
+    searchText: String
+    sort: String
+    theme: [String]
+    year: [Int]
+}
+
+input YoungEntriesFilters {
+    entryTypeId: Int
+    festivalName: String
+    year: Int
+}

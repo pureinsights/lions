@@ -1,0 +1,72 @@
+{
+    getCampaignsByIds(ids: ${ID}) {
+        access
+        assets {
+            fullUrl
+            id
+            label
+            thumbnailUrl
+            type
+        }
+        awardCount
+        awards {
+            count
+            level
+            levelLabel
+        }
+        brand {
+            name
+            slug
+        }
+        caseStudy {
+            background
+            description
+            execution
+            idea
+            outcome
+            strategy
+        }
+        company {
+            name
+            town
+        }
+        credits {
+            companies {
+                location
+                name
+                role
+                slug
+            }
+            people {
+                company
+                name
+                role
+                slug
+            }
+        }
+        downloadable
+        entryTypes {
+            entries {
+                category
+                level
+                levelLabel
+                section
+                slug
+            }
+            name
+            slug
+        }
+        festival {
+            code
+            name
+        }
+        id
+        requiredUserActions
+        saveable
+        shortlisted
+        slug
+        tags
+        title
+        year
+    }
+}

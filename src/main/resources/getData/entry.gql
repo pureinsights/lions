@@ -1,0 +1,136 @@
+{
+    getEntriesByIds(ids: ${ID}) {
+        access
+        assets {
+            fullUrl
+            id
+            label
+            thumbnailUrl
+            type
+        }
+        brand {
+            name
+            slug
+        }
+        campaign {
+            assets {
+                fullUrl
+                id
+                label
+                thumbnailUrl
+                type
+            }
+            awardCount
+            awards {
+                count
+                level
+                levelLabel
+            }
+            brand {
+                name
+                slug
+            }
+            caseStudy {
+                background
+                description
+                execution
+                idea
+                outcome
+                strategy
+            }
+            company {
+                name
+                town
+            }
+            credits {
+                companies {
+                    location
+                    name
+                    role
+                    slug
+                }
+                people {
+                    company
+                    name
+                    role
+                    slug
+                }
+            }
+            downloadable
+            entryTypes {
+                entries {
+                    category
+                    level
+                    levelLabel
+                    section
+                    slug
+                }
+                name
+                slug
+            }
+            festival {
+                code
+                name
+            }
+            id
+            requiredUserActions
+            saveable
+            shortlisted
+            slug
+            tags
+            title
+            year
+        }
+        caseStudy {
+            question
+            response
+        }
+        company {
+            name
+            town
+        }
+        credits {
+            companies {
+                location
+                name
+                role
+                slug
+            }
+            people {
+                company
+                name
+                role
+                slug
+            }
+        }
+        entryType {
+            award {
+                level
+                levelLabel
+            }
+            category {
+                id
+                name
+                slug
+            }
+            categorySubType
+            id
+            name
+            section {
+                name
+            }
+            slug
+        }
+        festival {
+            code
+            name
+        }
+        id
+        requiredUserActions
+        saveable
+        slug
+        tags
+        title
+        year
+    }
+}

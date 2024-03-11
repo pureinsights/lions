@@ -1,0 +1,9 @@
+${name}
+Business Type: ${type}
+#if($address.size() != 0)
+Addresses:
+  #foreach($a in $address)
+  $!{a.line1}, $!{a.line2}, $!{a.line3}, $!{a.city}, $!{a.postcode}
+  #end
+#end
+
