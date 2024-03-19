@@ -53,15 +53,13 @@ public class GetData_Main {
               System.out.printf("NO DATA: %s (%s)%n", slug, url);
             } else {
               var s = ret.get("slug");
-              if (s==null) {
+              if (s == null) {
                 System.out.printf("SLUG MISSING: %s (%s)%n", slug, url);
               } else if (!s.asText().equals(slug)) {
                 System.out.printf("SLUG MISMATCH: %s=>%s (%s)%n", slug, s, url);
               }
             }
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          } catch (InterruptedException e) {
+          } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
           }
         });
@@ -86,36 +84,18 @@ public class GetData_Main {
     }
     var json = MAPPER.readTree(response.body());
 
-//System.out.println(query);
-//    System.out.println(json);
-    String jp;
-    switch (type) {
+    String jp = switch (type) {
 //      case "report": jp = "/data/getTalksByIds/0";
 //        break;
-      case "talk":
-        jp = "/data/getTalksByIds/0";
-        break;
-      case "brand":
-        jp = "/data/getBrandsByIds/0";
-        break;
-      case "agency":
-        jp = "/data/getAgenciesByIds/0";
-        break;
-      case "entry":
-        jp = "/data/getEntriesByIds/0";
-        break;
-      case "campaign":
-        jp = "/data/getCampaignsByIds/0";
-        break;
-      case "individual":
-        jp = "/data/getPortfoliosByIds/0";
-        break;
-      case "inspiration":
-        jp = "/data/inspirationForId";
-        break;
-      default:
-        throw new IllegalStateException("Unexpected value: " + type);
-    }
+      case "talk" -> "/data/getTalksByIds/0";
+      case "brand" -> "/data/getBrandsByIds/0";
+      case "agency" -> "/data/getAgenciesByIds/0";
+      case "entry" -> "/data/getEntriesByIds/0";
+      case "campaign" -> "/data/getCampaignsByIds/0";
+      case "individual" -> "/data/getPortfoliosByIds/0";
+      case "inspiration" -> "/data/inspirationForId";
+      default -> throw new IllegalStateException("Unexpected value: " + type);
+    };
     var item = json.at(jp);
     MAPPER.writerWithDefaultPrettyPrinter().writeValue(out, item);
     return item;
