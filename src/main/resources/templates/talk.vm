@@ -1,5 +1,7 @@
 ${title} - ${year}
 Talk ID: ${id}
+ImageUrl: ${imageUrl}
+VideoUrl: ${videoUrl}
 
 This talk was on ${stage} from ${startsAt} to ${endsAt}. The host was ${host.name}.
 
@@ -10,7 +12,6 @@ The following speakers were involved:
   #foreach($s in $speakers)
   ${s.name} #if($s.title) - ${s.title}#end
   #if($s.biography) - $!_.noCRLF(${s.biography})#end
-
 
   #end
 #end

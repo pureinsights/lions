@@ -1,5 +1,6 @@
 ${title}
 Inspiration ID: ${id}
+ImageUrl: ${imageUrl}
 
 ${introduction}
 
@@ -8,74 +9,6 @@ The following resources where used:
   #foreach($ir in $inspirationResources)
   ${ir.title}
   ${ir.introduction}
-
-  #if($ir.talk)
-    TALK: ${ir.talk.title} - ${ir.talk.year}
-
-    This talk was on ${ir.talk.stage} from ${ir.talk.startsAt} to ${ir.talk.endsAt}. The host was ${ir.talk.host.name}.
-
-    ${ir.talk.description}
-
-    #if($ir.talk.speakers.size() != 0)
-    The following speakers were involved:
-      #foreach($s in $ir.talk.speakers)
-      ${s.name} #if($s.title) - ${s.title}#end
-      #if($s.biography) - $!_.noCRLF(${s.biography})#end
-
-
-      #end
-    #end
-  #end
-
-  #if($ir.campaign)
-  CAMPAIGN: ${ir.campaign.title} - ${ir.campaign.year}
-            Campaign ID: $id
-            #if($ir.campaign.tags.size() != 0)
-              Tags: ${ir.campaign.tags}
-            #end
-
-            This campaign was run by ${ir.campaign.company.name} of ${ir.campaign.company.town} for ${ir.campaign.brand.name}#if(${ir.campaign.awardCount}) and won ${ir.campaign.awardCount} awards#end.
-            #if($ir.campaign.awards.size() != 0)
-            The campaign has the following number of awards:
-            #foreach($a in $ir.campaign.awards)
-            ${a.levelLabel}: ${a.count}
-            #end
-            #end
-
-            It was premiered at the ${ir.campaign.festival.name} festival.
-
-            $!_.noCRLF($!{ir.campaign.caseStudy.background})
-            $!_.noCRLF($!{ir.campaign.caseStudy.description})
-            $!_.noCRLF($!{ir.campaign.caseStudy.execution})
-            $!_.noCRLF($!{ir.campaign.caseStudy.idea})
-            $!_.noCRLF($!{ir.campaign.caseStudy.outcome})
-            $!_.noCRLF($!{ir.campaign.caseStudy.strategy})
-
-            #if($ir.campaign.entryTypes.size() != 0)
-            The campaign had the following entries:
-            #foreach($et in $ir.campaign.entryTypes)
-              ${et.name}
-              #foreach($e in $et.entries)
-                ${e.section}::${e.category} #if(${e.level}) (${e.level}/${e.levelLabel}}#end
-              #end
-            #end
-            #end
-
-            #if($ir.campaign.credits.companies.size() != 0)
-            The following companies are credited:
-            #foreach($co in $ir.campaign.credits.companies)
-              ${co.name} - ${co.role} (${co.location})
-            #end
-
-            #end
-            #if($ir.campaign.credits.people.size() != 0)
-            The following people are credited:
-            #foreach($p in $ir.campaign.credits.people)
-              ${p.name}#if(${p.role}) - ${p.role}#end#if(${p.company}) (${p.company})#end
-            #end
-
-            #end
-  #end
 
   #end
 #end

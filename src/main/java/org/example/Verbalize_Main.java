@@ -2,6 +2,8 @@ package org.example;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -41,7 +43,21 @@ public class Verbalize_Main {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attr) throws IOException {
       Path relative = Paths.get(DATA).relativize(file);
+      if (relative.toString().endsWith(".pdf")) {
+        System.out.format("Skipping pdf: %s (%d bytes)%n", relative, attr.size());
+        return FileVisitResult.CONTINUE;
+      }
+      if (relative.toString().endsWith(".7z")) {
+        System.out.format("Skipping 7z: %s (%d bytes)%n", relative, attr.size());
+        return FileVisitResult.CONTINUE;
+      }
+
       String type = relative.getParent().getFileName().toString();
+      if (type.equals("reports")) {
+        System.out.format("Skipping report: %s (%d bytes)%n", relative, attr.size());
+        return FileVisitResult.CONTINUE;
+      }
+
       System.out.format("Processing %s: %s (%d bytes)%n", type, relative, attr.size());
 
       // Load the file
@@ -49,9 +65,31 @@ public class Verbalize_Main {
 
       // Open the output file
       File outFile = new File(OUTPUT, relative.toString().replace(".json", ".txt"));
+      verbalizeToFile(type, json, outFile);
+
+      if (type.equals("agency")) {
+        verbalizeAgengcyCampaign((ObjectNode) json, relative);
+      }
+      return FileVisitResult.CONTINUE;
+    }
+
+
+    private void verbalizeToFile(String type, JsonNode json, File outFile) throws IOException {
       String verbalized = verbalizeVelocity(json, TEMPLATE_BASE + type + ".vm");
       write(outFile, verbalized);
-      return FileVisitResult.CONTINUE;
+    }
+
+
+    private void verbalizeAgengcyCampaign(ObjectNode json, Path relative) throws IOException {
+      ArrayNode campaigns = (ArrayNode) json.remove("campaigns");
+      for (JsonNode c: campaigns) {
+        ObjectNode j = json.deepCopy();
+        j.put("campaign", c);
+        String slug = c.get("slug").asText();
+
+        File outFile = new File(OUTPUT, relative.toString().replace(".json", "##" + slug +".txt"));
+        verbalizeToFile("agency-campaign", j, outFile);
+      }
     }
 
 

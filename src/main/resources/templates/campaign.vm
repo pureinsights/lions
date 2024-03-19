@@ -4,15 +4,13 @@ Campaign ID: $id
   Tags: ${tags}
 #end
 
-This campaign was run by ${company.name} of ${company.town} for ${brand.name}#if(${awardCount}) and won ${awardCount} awards#end.
+This campaign was run by ${company.name} of ${company.town}#if(${brand.name}) for ${brand.name}#end#if(${awardCount}) and won ${awardCount} awards#end.
 #if($awards.size() != 0)
 The campaign has the following number of awards:
 #foreach($a in $awards)
 ${a.levelLabel}: ${a.count}
 #end
 #end
-
-It was premiered at the ${festival.name} festival.
 
 $!_.noCRLF($!{caseStudy.background})
 $!_.noCRLF($!{caseStudy.description})
@@ -21,27 +19,28 @@ $!_.noCRLF($!{caseStudy.idea})
 $!_.noCRLF($!{caseStudy.outcome})
 $!_.noCRLF($!{caseStudy.strategy})
 
-#if($entryTypes.size() != 0)
-The campaign had the following entries:
-#foreach($et in $entryTypes)
-  ${et.name}
-  #foreach($e in $et.entries)
-    ${e.section}::${e.category} #if(${e.level}) (${e.level}/${e.levelLabel}}#end
-  #end
-#end
-#end
-
 #if($credits.companies.size() != 0)
-The following companies are credited:
-#foreach($co in $credits.companies)
-  ${co.name} - ${co.role} (${co.location})
-#end
+  The following companies are credited:
+  #foreach($co in $credits.companies)
+    ${co.name} - ${co.role} (${co.location})
+  #end
 
 #end
 #if($credits.people.size() != 0)
-The following people are credited:
-#foreach($p in $credits.people)
-  ${p.name}#if(${p.role}) - ${p.role}#end#if(${p.company}) (${p.company})#end
-#end
+  The following people are credited:
+  #foreach($p in $credits.people)
+    ${p.name}#if(${p.role}) - ${p.role}#end#if(${p.company}) (${p.company})#end
+  #end
 
 #end
+
+#if($assets.size() != 0)
+The following campaign assets exist:
+  #foreach($a in $assets)
+    ${a.label} ($a.type): ${a.fullUrl}
+  #end
+
+#end
+
+// TODO AWARDS
+

@@ -43,3 +43,9 @@ bin/
 .idea/
 
 console.log
+
+src/main/resources/fetched/
+
+src/main/resources/fetched.orig/
+
+src/main/resources/output/
