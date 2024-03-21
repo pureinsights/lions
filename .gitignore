@@ -49,3 +49,7 @@ src/main/resources/fetched/
 src/main/resources/fetched.orig/
 
 src/main/resources/output/
+
+src/main/resources/fetched.sav/
+
+src/main/resources/output.sav/
